@@ -22,4 +22,14 @@ describe 'Items API' do
     expect(response).to be_successful
     expect(customer["id"]).to eq(id)
   end
+  it 'can create a new customer' do
+    customer_params = {first_name: 'Sokka', last_name: 'Of the Water Tribe'}
+
+    post '/api/v1/customers', params: {customer: customer_params}
+    customer = Customer.last
+
+    assert_response :success
+    expect(response).to be_successful
+    expect(customer.first_name).to eq(customer_params[:first_name])
+  end
 end
