@@ -7,6 +7,52 @@ describe 'Items API' do
     get '/api/v1/customers'
 
     expect(response).to be_successful
+
     customers = JSON.parse(response.body)
+
+    expect(customers.count).to eq(3)
+  end
+  it 'sends one customer by id' do
+    id = create(:customer).id
+
+    get "/api/v1/customers/#{id}"
+
+    customer = JSON.parse(response.body)
+
+    expect(response).to be_successful
+    expect(customer["id"]).to eq(id)
+  end
+  it 'can create a new customer' do
+    customer_params = {first_name: 'Sokka', last_name: 'Of the Water Tribe'}
+
+    post '/api/v1/customers', params: {customer: customer_params}
+    customer = Customer.last
+
+    assert_response :success
+    expect(response).to be_successful
+    expect(customer.first_name).to eq(customer_params[:first_name])
+  end
+  it "can update an existing customer" do
+    id = create(:customer).id
+    previous_name = Customer.last.first_name
+    customer_params = {first_name: "Korra"}
+
+    put "/api/v1/customers/#{id}", params: {customer: customer_params}
+    customer = Customer.find_by(id: id)
+
+    expect(response).to be_successful
+    expect(customer.first_name).to_not eq(previous_name)
+    expect(customer.first_name).to eq("Korra")
+  end
+  it "can destroy a customer" do
+    customer = create(:customer)
+
+    expect(Customer.count).to eq(1)
+
+    delete "/api/v1/customers/#{customer.id}"
+
+    expect(response).to be_successful
+    expect(Customer.count).to eq(0)
+    expect{Customer.find(customer.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
 end
