@@ -39,3 +39,5 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
    end
 end
+
+require 'awesome_print'
