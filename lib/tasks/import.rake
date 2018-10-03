@@ -12,17 +12,17 @@ namespace :import do
 
     merchants
     items
+    customers
     invoices
     invoice_items
-    customers
     transactions
   end
 
   private
 
   def merchants
-    CSV.foreach('.db/csv/merchants.csv',  headers: true, header_converters: :symbol) do |merchant|
-      merchant = Merchant.create(
+    CSV.foreach('./db/csv/merchants.csv',  headers: true, header_converters: :symbol) do |merchant|
+      merchant = Merchant.create!(
         id: merchant[:id],
         name: merchant[:name],
         created_at: merchant[:created_at],
@@ -32,8 +32,8 @@ namespace :import do
   end
 
   def items
-    CSV.foreach('.db/csv/items.csv',  headers: true, header_converters: :symbol) do |item|
-      item = Item.create(
+    CSV.foreach('./db/csv/items.csv',  headers: true, header_converters: :symbol) do |item|
+      item = Item.create!(
         id: item[:id],
         name: item[:name],
         description: item[:description],
@@ -46,8 +46,8 @@ namespace :import do
   end
 
   def invoices
-    CSV.foreach('.db/csv/invoices.csv',  headers: true, header_converters: :symbol) do |invoice|
-      invoice = Invoice.create(
+    CSV.foreach('./db/csv/invoices.csv',  headers: true, header_converters: :symbol) do |invoice|
+      invoice = Invoice.create!(
         id: invoice[:id],
         customer_id: invoice[:customer_id].to_i,
         merchant_id: invoice[:merchant_id].to_i,
@@ -59,8 +59,8 @@ namespace :import do
   end
 
   def invoice_items
-    CSV.foreach('.db/csv/invoice_items.csv',  headers: true, header_converters: :symbol) do |invoice_item|
-      invoice_item = InvoiceItem.create(
+    CSV.foreach('./db/csv/invoice_items.csv',  headers: true, header_converters: :symbol) do |invoice_item|
+      invoice_item = InvoiceItem.create!(
         id: invoice_item[:id],
         item_id: invoice_item[:item_id].to_i,
         invoice_id: invoice_item[:invoice_id].to_i,
@@ -73,8 +73,8 @@ namespace :import do
   end
 
   def customers
-    CSV.foreach('.db/csv/customers.csv',  headers: true, header_converters: :symbol) do |customer|
-      customer = Customer.create(
+    CSV.foreach('./db/csv/customers.csv',  headers: true, header_converters: :symbol) do |customer|
+      customer = Customer.create!(
         id: customer[:id],
         first_name: customer[:first_name],
         last_name: customer[:last_name],
@@ -85,8 +85,8 @@ namespace :import do
   end
 
   def transactions
-    CSV.foreach('.db/csv/transactions.csv',  headers: true, header_converters: :symbol) do |transaction|
-      transaction = Transaction.create(
+    CSV.foreach('./db/csv/transactions.csv',  headers: true, header_converters: :symbol) do |transaction|
+      transaction = Transaction.create!(
         id: transaction[:id],
         invoice_id: transaction[:invoice_id].to_i,
         credit_card_number: transaction[:credit_card_number],
