@@ -32,4 +32,16 @@ describe 'Items API' do
     expect(response).to be_successful
     expect(customer.first_name).to eq(customer_params[:first_name])
   end
+  it "can update an existing customer" do
+    id = create(:customer).id
+    previous_name = Customer.last.first_name
+    customer_params = {first_name: "Korra"}
+
+    put "/api/v1/customers/#{id}", params: {customer: customer_params}
+    customer = Customer.find_by(id: id)
+
+    expect(response).to be_successful
+    expect(customer.first_name).to_not eq(previous_name)
+    expect(customer.first_name).to eq("Korra")
+  end
 end
