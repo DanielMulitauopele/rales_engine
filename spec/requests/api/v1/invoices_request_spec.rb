@@ -12,7 +12,7 @@ describe 'Invoices API' do
 
     expect(invoices.count).to eq(3)
   end
-  it 'sends one invoice item by id' do
+  it 'sends one invoice by id' do
     id = create(:invoice).id
 
     get "/api/v1/invoices/#{id}"
