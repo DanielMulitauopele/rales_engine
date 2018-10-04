@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         get '/find', to: 'search#show'
       end
 
+      namespace :items do
+        get '/find', to: 'search#show'
+      end
+
       resources :customers, only: [:index, :show]
       resources :invoice_items, only: [:index, :show]
       resources :invoices, only: [:index, :show]
