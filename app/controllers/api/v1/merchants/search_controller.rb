@@ -3,9 +3,13 @@ class::Api::V1::Merchants::SearchController < ApplicationController
     render json: Merchant.find_by(merchant_params)
   end
 
+  def index
+    render json: Merchant.where(merchant_params)
+  end
+
   private
 
   def merchant_params
-    params.permit(:name, :created_at, :updated_at)
+    params.permit(:id, :name, :created_at, :updated_at)
   end
 end
