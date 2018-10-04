@@ -22,7 +22,9 @@ describe 'Item Search Controller' do
     expect(item.first['name']).to eq(item1.name)
   end
   it "should find all items by description" do
-    item1, item2, item3 = create_list(:item, 3)
+    item1 = create(:item, description: 'description')
+    item2 = create(:item, description: 'description')
+    item3 = create(:item, description: 'description')
 
     get "/api/v1/items/find_all?description=#{item1.description}"
 
