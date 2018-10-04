@@ -6,6 +6,6 @@ class Api::V1::InvoiceItems::SearchController < ApplicationController
   private
 
   def invoice_item_params
-    params.permit(:customer_id, :merchant_id, :status, :created_at, :updated_at)
+    params.permit(:item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at)
   end
 end
