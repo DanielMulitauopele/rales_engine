@@ -49,7 +49,7 @@ describe 'Invoice Item Search Controller' do
     invoice_item = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(invoice_item['unit_price']).to eq(unit_price)
+    expect(invoice_item['unit_price'].to_f).to eq(unit_price)
   end
   it "should find invoice item by created at date" do
     created_at = create(:invoice_item).created_at
@@ -59,7 +59,7 @@ describe 'Invoice Item Search Controller' do
     invoice_item = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(invoice_item['unit_price']).to eq(InvoiceItem.last.unit_price)
+    expect(invoice_item['unit_price'].to_f).to eq(InvoiceItem.last.unit_price)
   end
   it "should find invoice item by updated at date" do
     updated_at = create(:invoice_item).updated_at
@@ -69,6 +69,6 @@ describe 'Invoice Item Search Controller' do
     invoice_item = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(invoice_item['unit_price']).to eq(InvoiceItem.last.unit_price)
+    expect(invoice_item['unit_price'].to_f).to eq(InvoiceItem.last.unit_price)
   end
 end
