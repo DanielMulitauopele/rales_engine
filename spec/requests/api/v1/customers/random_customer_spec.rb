@@ -10,6 +10,6 @@ describe 'Customers Random Controller' do
 
     expect(response).to be_successful
     expect(customer).to be_an_instance_of(Hash)
-    expect(customer.count).to_not be_an_instance_of(Array)
+    expect(customer).to_not be_an_instance_of(Array)
   end
 end
