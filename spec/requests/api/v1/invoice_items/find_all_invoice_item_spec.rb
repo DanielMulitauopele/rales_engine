@@ -49,7 +49,7 @@ describe 'Invoice Item Search Controller' do
     i_item = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(i_item.first['unit_price']).to eq(i_item1.unit_price)
+    expect(i_item.first['unit_price'].to_f).to eq(i_item1.unit_price)
   end
   it "should find all invoice items by created_at" do
     i_item1, i_item2, i_item3 = create_list(:invoice_item, 3)
@@ -59,7 +59,7 @@ describe 'Invoice Item Search Controller' do
     i_item = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(i_item.last['unit_price']).to eq(InvoiceItem.last.unit_price)
+    expect(i_item.last['unit_price'].to_f).to eq(InvoiceItem.last.unit_price)
   end
   it "should find all invoice items by updated_at" do
     i_item1, i_item2, i_item3 = create_list(:invoice_item, 3)
@@ -69,6 +69,6 @@ describe 'Invoice Item Search Controller' do
     i_item = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(i_item.last['unit_price']).to eq(InvoiceItem.last.unit_price)
+    expect(i_item.last['unit_price'].to_f).to eq(InvoiceItem.last.unit_price)
   end
 end

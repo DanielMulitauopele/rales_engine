@@ -41,7 +41,7 @@ describe 'Item Search Controller' do
     item = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(item.first['unit_price']).to eq(item1.unit_price)
+    expect(item.first['unit_price'].to_f).to eq(item1.unit_price)
   end
   it "should find all items by merchant_id" do
     item1, item2, item3 = create_list(:item, 3)

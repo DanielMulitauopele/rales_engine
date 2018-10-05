@@ -37,7 +37,7 @@ namespace :import do
         id: item[:id],
         name: item[:name],
         description: item[:description],
-        unit_price: item[:unit_price].to_i,
+        unit_price: item[:unit_price].to_f/100,
         merchant_id: item[:merchant_id].to_i,
         created_at: item[:created_at],
         updated_at: item[:updated_at]
@@ -65,7 +65,7 @@ namespace :import do
         item_id: invoice_item[:item_id].to_i,
         invoice_id: invoice_item[:invoice_id].to_i,
         quantity: invoice_item[:quantity].to_i,
-        unit_price: invoice_item[:unit_price].to_i,
+        unit_price: invoice_item[:unit_price].to_f/100,
         created_at: invoice_item[:created_at],
         updated_at: invoice_item[:updated_at]
       )
