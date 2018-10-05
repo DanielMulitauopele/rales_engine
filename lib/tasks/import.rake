@@ -5,9 +5,9 @@ namespace :import do
 
     Merchant.destroy_all
     Item.destroy_all
+    Customer.destroy_all
     Invoice.destroy_all
     InvoiceItem.destroy_all
-    Customer.destroy_all
     Transaction.destroy_all
 
     merchants
@@ -29,6 +29,7 @@ namespace :import do
         updated_at: merchant[:updated_at]
       )
     end
+    puts "Created #{Merchant.count} merchants!"
   end
 
   def items
@@ -43,6 +44,7 @@ namespace :import do
         updated_at: item[:updated_at]
       )
     end
+    puts "Created #{Item.count} items!"
   end
 
   def invoices
@@ -56,6 +58,7 @@ namespace :import do
         updated_at: invoice[:updated_at]
       )
     end
+    puts "Created #{Invoice.count} invoices!"
   end
 
   def invoice_items
@@ -70,6 +73,7 @@ namespace :import do
         updated_at: invoice_item[:updated_at]
       )
     end
+    puts "Created #{InvoiceItem.count} invoice items!"
   end
 
   def customers
@@ -82,6 +86,7 @@ namespace :import do
         updated_at: customer[:updated_at]
       )
     end
+    puts "Created #{Customer.count} customers!"
   end
 
   def transactions
@@ -96,5 +101,6 @@ namespace :import do
         updated_at: transaction[:updated_at]
       )
     end
+    puts "Created #{Transaction.count} transactions!"
   end
 end
