@@ -59,4 +59,16 @@ describe 'Invoice Relationships Controller' do
     expect(customer).to be_an_instance_of(Hash)
     expect(customer['id']).to eq(customer1.id)
   end
+  it "should display all merchants associated with invoice" do
+    merchant1 = create(:merchant)
+    invoice1 = create(:invoice, merchant_id: merchant1.id)
+
+    get "/api/v1/invoices/#{invoice1.id}/merchant"
+
+    merchant = JSON.parse(response.body)
+
+    expect(response).to be_successful
+    expect(merchant).to be_an_instance_of(Hash)
+    expect(merchant['id']).to eq(merchant1.id)
+  end
 end
