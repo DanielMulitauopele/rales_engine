@@ -18,4 +18,16 @@ describe 'Item Relationships Controllers' do
     expect(inv_items).to be_an_instance_of(Array)
     expect(inv_items.count).to eq(3)
   end
+  it "should display merchant associated with itme" do
+    merchant1 = create(:merchant)
+    item1 = create(:item, merchant_id: merchant1.id)
+
+    get "/api/v1/items/#{item1.id}/merchant"
+
+    merchant = JSON.parse(response.body)
+
+    expect(response).to be_successful
+    expect(merchant).to be_an_instance_of(Hash)
+    expect(merchant['id']).to be(merchant1.id)
+  end
 end
