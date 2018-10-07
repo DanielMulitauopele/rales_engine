@@ -37,7 +37,9 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :customers, only: [:index, :show]
+      resources :customers, only: [:index, :show] do
+        resources :invoices, only: [:index]
+      end
       resources :invoice_items, only: [:index, :show]
       resources :invoices, only: [:index, :show]
       resources :items, only: [:index, :show]
