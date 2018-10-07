@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Customer Invoices Controller' do
+describe 'Customer Relationships Controllers' do
   it "should display all invoices associated with specific customer" do
     customer1 = create(:customer)
     invoice1 = create(:invoice, customer_id: customer1.id)
@@ -21,8 +21,8 @@ describe 'Customer Invoices Controller' do
     invoice2 = create(:invoice, customer_id: customer1.id)
     trans1 = create(:transaction, invoice_id: invoice1.id)
     trans2 = create(:transaction, invoice_id: invoice1.id)
-    trans2 = create(:transaction, invoice_id: invoice2.id)
-    trans3 = create(:transaction)
+    trans3 = create(:transaction, invoice_id: invoice2.id)
+    trans4 = create(:transaction)
 
     get "/api/v1/customers/#{customer1.id}/transactions"
 
