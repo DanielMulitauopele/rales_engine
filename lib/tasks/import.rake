@@ -29,7 +29,7 @@ namespace :import do
         updated_at: merchant[:updated_at]
       )
     end
-    puts "Created #{Merchant.count} merchants!"
+    puts "Imported #{Merchant.count} merchants!"
   end
 
   def items
@@ -44,7 +44,7 @@ namespace :import do
         updated_at: item[:updated_at]
       )
     end
-    puts "Created #{Item.count} items!"
+    puts "Imported #{Item.count} items!"
   end
 
   def invoices
@@ -58,7 +58,7 @@ namespace :import do
         updated_at: invoice[:updated_at]
       )
     end
-    puts "Created #{Invoice.count} invoices!"
+    puts "Imported #{Invoice.count} invoices!"
   end
 
   def invoice_items
@@ -73,7 +73,7 @@ namespace :import do
         updated_at: invoice_item[:updated_at]
       )
     end
-    puts "Created #{InvoiceItem.count} invoice items!"
+    puts "Imported #{InvoiceItem.count} invoice items!"
   end
 
   def customers
@@ -86,7 +86,7 @@ namespace :import do
         updated_at: customer[:updated_at]
       )
     end
-    puts "Created #{Customer.count} customers!"
+    puts "Imported #{Customer.count} customers!"
   end
 
   def transactions
@@ -101,6 +101,6 @@ namespace :import do
         updated_at: transaction[:updated_at]
       )
     end
-    puts "Created #{Transaction.count} transactions!"
+    puts "Imported #{Transaction.count} transactions!"
   end
 end
