@@ -4,4 +4,8 @@ class Merchant < ApplicationRecord
   has_many :invoices
   has_many :items
   has_many :invoice_items, through: :invoices
+
+  def self.most_revenue
+    require "pry"; binding.pry
+  end
 end
